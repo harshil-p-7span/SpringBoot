@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+// Instead of rest controller annotation we can on controller annotation
+// but we have to use response body annotation with that on each mapping.
 public class UserController {
 
     private UserService userService;
