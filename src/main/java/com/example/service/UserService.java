@@ -3,14 +3,17 @@ package com.example.service;
 import com.example.entity.User;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component  // Used to annotate classes that provide a specific service or business logic within the application.
+@Component// Used to annotate classes that provide a specific service or business logic within the application.
 public class UserService {
 
     // Used to inject values from external sources into Spring-managed beans.(Ex. application.properties)
@@ -45,5 +48,15 @@ public class UserService {
 
     public User getUserById(Long id){
         return userRepository.findById(id).orElse(null);
+    }
+
+    @Async
+    public void printMessage() {
+        try {
+            Thread.sleep(5000); // Pause for 5 seconds
+            System.out.println("Printing message after 5 second");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
