@@ -1,11 +1,12 @@
 package com.example.service.interfaces;
 
+import com.example.dto.ProductDTO;
 import com.example.entity.Product;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface ProductInterface {
-    ResponseEntity addProduct(Product product);
+    ResponseEntity addProduct(ProductDTO productDTO);
 
     ResponseEntity getAllProducts();
 

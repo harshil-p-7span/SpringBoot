@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ProductDTO;
 import com.example.entity.Product;
 import com.example.service.interfaces.ProductInterface;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ public class ProductController {
     }
 
     @PostMapping(value = "/addProduct")
-    public ResponseEntity addProduct(@RequestBody Product product) {
-        return productInterface.addProduct(product);
+    public ResponseEntity addProduct(@RequestBody ProductDTO productDTO) {
+        return productInterface.addProduct(productDTO);
     }
 
     @GetMapping

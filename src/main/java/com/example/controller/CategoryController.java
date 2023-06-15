@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.CategoryDTO;
 import com.example.entity.Category;
 import com.example.service.interfaces.CategoryInterface;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,8 @@ public class CategoryController {
     }
 
     @PostMapping(value = "/addCategory")
-    public ResponseEntity addCategory(@RequestBody Category category){
-        return categoryInterface.addCategory(category);
+    public ResponseEntity addCategory(@RequestBody CategoryDTO categoryDTO){
+        return categoryInterface.addCategory(categoryDTO);
     }
 
     @GetMapping
