@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dto.ProductDTO;
 import com.example.entity.Product;
 import com.example.service.interfaces.ProductInterface;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ public class ProductController {
     }
 
     @PostMapping(value = "/addProduct")
-    public ResponseEntity addProduct(@RequestBody Product product) {
-        return productInterface.addProduct(product);
+    public ResponseEntity addProduct(@RequestBody ProductDTO productDTO) {
+        return productInterface.addProduct(productDTO);
     }
 
     @GetMapping
@@ -39,5 +40,20 @@ public class ProductController {
     @DeleteMapping(value = "/{productId}")
     public ResponseEntity deleteProduct(@PathVariable Long productId) {
         return productInterface.deleteProduct(productId);
+    }
+
+    @GetMapping(value = "/{productName}/{productPrice}")
+    public ResponseEntity findAllProductByNameAndPrice(@PathVariable String productName, @PathVariable Double productPrice){
+        return productInterface.findAllProductByNameAndPriceWithPagination(productName, productPrice);
+    }
+
+    @GetMapping(value = "/search/{productName}")
+    public ResponseEntity findAllProductByNameWithSearchAndSort(@PathVariable String productName){
+        return productInterface.findAllProductWithSearch(productName);
+    }
+
+    @GetMapping(value = "/nativeQuery/{productName}")
+    public ResponseEntity findAllProductWithNameAndPriceWithNativeQuery(@PathVariable("productName") String productName){
+        return productInterface.findAllProductWithNativeQuery(productName);
     }
 }
