@@ -40,4 +40,19 @@ public class ProductController {
     public ResponseEntity deleteProduct(@PathVariable Long productId) {
         return productInterface.deleteProduct(productId);
     }
+
+    @GetMapping(value = "/{productName}/{productPrice}")
+    public ResponseEntity findAllProductByNameAndPrice(@PathVariable String productName, @PathVariable Double productPrice){
+        return productInterface.findAllProductByNameAndPriceWithPagination(productName, productPrice);
+    }
+
+    @GetMapping(value = "/search/{productName}")
+    public ResponseEntity findAllProductByNameWithSearchAndSort(@PathVariable String productName){
+        return productInterface.findAllProductWithSearch(productName);
+    }
+
+    @GetMapping(value = "/nativeQuery/{productName}")
+    public ResponseEntity findAllProductWithNameAndPriceWithNativeQuery(@PathVariable("productName") String productName){
+        return productInterface.findAllProductWithNativeQuery(productName);
+    }
 }
